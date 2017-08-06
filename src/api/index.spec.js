@@ -20,7 +20,7 @@ describe('api', () => {
 		it('should return first page 8 products', () => {
 			let productList8 = setupProductList(0, 8);
 			let products = productList8.products;
-			api.getProductList(0, 8).then(ret => {
+			api.resolveProductList(Promise.resolve(productsJSON), 0, 8).then(ret => {
 				expect(ret).toEqual({totalProductsCount: productsJSON.length, currentPage: 0, productsCountPerPage: 8, products});
 			});
 		});
@@ -28,7 +28,7 @@ describe('api', () => {
 		it('should return second page 16 products', () => {
 			let productList = setupProductList(1, 16);
 			let products = productList.products;
-			api.getProductList(1, 16).then(ret => {
+			api.resolveProductList(Promise.resolve(productsJSON), 1, 16).then(ret => {
 				expect(ret).toEqual({totalProductsCount: productsJSON.length, currentPage: 1, productsCountPerPage: 16, products});
 			});
 		});
